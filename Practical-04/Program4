@@ -1,0 +1,53 @@
+class Parent 
+{	private var pvt:Int = 25
+    	protected var prct:Int = 15
+    	var public:Int = 35
+
+    	def display_private():Unit = 
+	{        println("Private variable is: " + pvt)
+    	}
+
+    	def display_protected():Unit = 
+	{        println("Protected variable is: " + prct)
+    	}
+}
+class Child extends Parent 
+{	def display_parent_protected() : Unit = 
+	{       println("Displaying protected variable of Parent class in Child class: " + prct)
+        	prct = 5
+        	println("Displaying protected variable of Parent class in Child class after modification: " + prct)
+    	}
+}
+object Program4 
+{	def readline(msg: String):String = 
+	{       var s : String = scala.io.StdIn.readLine(msg)
+        	return s
+    	}
+    	def add_mutable(a: Int, b: Int):Int = 
+	{        return a + b
+    	}
+    	def add_immutable(x: Int, y: Int):Int = 
+	{        return x + y
+    	}
+	def main(args: Array[String]):Unit = 
+	{       val a:Int = readline("Enter 1st number(Immutable): ").toInt
+        	val b:Int = readline("Enter 2st number(Immutable): ").toInt
+        	var x:Int = readline("\nEnter 1st number(Mutable): ").toInt
+        	var y:Int = readline("Enter 2st number(Mutable): ").toInt
+
+        	var mutable_sum:Int = add_mutable(x, y)
+        	val immutable_sum:Int = add_immutable(a, b)
+	        	println("\nImmutable Sum: " + immutable_sum)
+			println("Mutable Sum: " + mutable_sum)
+                // immutable_sum = 20 
+		// This will throw error [error: reassignment to val]
+        
+        	var parent = new Parent()
+        		println("\nPublic variable is: " + parent.public)
+        	parent.display_private()
+        	parent.display_protected()
+
+        	var child = new Child()
+        	child.display_parent_protected()
+    	}
+}
